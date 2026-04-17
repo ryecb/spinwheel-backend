@@ -43,12 +43,21 @@ pipeline {
             }
         }
 
-        stage('Deploy to QA') {
+        stage('Deploy to Railway') {
             steps {
-                echo "Deploying ${DOCKER_IMAGE}:${DOCKER_TAG} to QA environment"
-                // Replace with actual deployment command for your environment
-                // sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}"
-                // sh "kubectl set image deployment/spinwheel-backend spinwheel-backend=${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+                echo "Deploying ${DOCKER_IMAGE}:${DOCKER_TAG} to Railway"
+                // Uncomment and configure once Railway is connected to Jenkins:
+                // 1. Add RAILWAY_TOKEN as a Jenkins credential (Secret text)
+                // 2. Set RAILWAY_SERVICE_ID in environment block above
+                //
+                // withCredentials([string(credentialsId: 'railway-token', variable: 'RAILWAY_TOKEN')]) {
+                //     sh '''
+                //         curl -s -X POST "https://backboard.railway.com/graphql/v2" \
+                //             -H "Authorization: Bearer ${RAILWAY_TOKEN}" \
+                //             -H "Content-Type: application/json" \
+                //             -d '{"query":"mutation { serviceInstanceRedeploy(serviceId: \\"'"${RAILWAY_SERVICE_ID}"'\\") }"}'
+                //     '''
+                // }
             }
         }
     }
