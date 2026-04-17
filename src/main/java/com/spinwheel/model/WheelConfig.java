@@ -26,6 +26,8 @@ public class WheelConfig {
 
     private String riggedItemName;
 
+    private boolean confettiEnabled;
+
     @OneToMany(mappedBy = "wheelConfig", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     @OrderBy("position ASC")
@@ -70,6 +72,14 @@ public class WheelConfig {
 
     public void setRiggedItemName(String riggedItemName) {
         this.riggedItemName = riggedItemName;
+    }
+
+    public boolean isConfettiEnabled() {
+        return confettiEnabled;
+    }
+
+    public void setConfettiEnabled(boolean confettiEnabled) {
+        this.confettiEnabled = confettiEnabled;
     }
 
     public List<WheelItem> getItems() {

@@ -53,6 +53,7 @@ public class WheelConfigController {
                     existing.setName(updated.getName());
                     existing.setRiggedEnabled(updated.isRiggedEnabled());
                     existing.setRiggedItemName(updated.getRiggedItemName());
+                    existing.setConfettiEnabled(updated.isConfettiEnabled());
                     existing.getItems().clear();
                     if (updated.getItems() != null) {
                         updated.getItems().forEach(item -> {
